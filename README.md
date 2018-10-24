@@ -49,3 +49,22 @@
 
 **30-lifecycle-intro** - Раздел 7, "Жизненный цикл - введение"
 
+**40-component-did-mount-practice** - Раздел 7, "Используем на практике componentDidMount()"
+
+**50-component-did-update** - Раздел 7, "Используем на практике componentDidUpdate()"
+
+**60-error-boundries** - Раздел 7, "Используем componentDidCatch() на практике"
+
+**70-passing-function-as-data-sources** - Раздел 8, "Использование функций"
+
+**80-children** - Раздел 8, "Children"
+
+**90-cloning-elements** - Раздел 8, "Клонирование элементов"
+
+**100-higher-order-components** - Раздел 8, "Компоненты высшего порядка (HOC)"
+
+**110-hoc-composition** - Раздел 8, "Композиция компонентов высшего порядка"
+
+**120-context** - Раздел 8, "Использование Context API"
+
+**130-hoc-context** - Раздел 8, "Трансформация props в компонентах высшего порядка"
