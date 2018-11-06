@@ -68,3 +68,9 @@
 **120-context** - Раздел 8, "Использование Context API"
 
 **130-hoc-context** - Раздел 8, "Трансформация props в компонентах высшего порядка"
+
+**140-dynamic-context-switch** - Раздел 8, "Обновление контекста"
+
+**150-prop-types** - Раздел 8, "Библиотеки prop-types"
+
+**160-basic-routing** - Раздел 9, "Основы react-router"
