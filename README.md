@@ -74,3 +74,9 @@
 **150-prop-types** - Раздел 8, "Библиотеки prop-types"
 
 **160-basic-routing** - Раздел 9, "Основы react-router"
+
+**170-how-routing-works** - Pаздел 9, "Как работает Route"
+
+**180-relative-paths** - Pаздел 9, "Относительные пути"
+
+**190-relative-paths** - Pаздел 9, "Switch (обработка несуществующих адресов)"
