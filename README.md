@@ -80,3 +80,11 @@
 **180-relative-paths** - Pаздел 9, "Относительные пути"
 
 **190-relative-paths** - Pаздел 9, "Switch (обработка несуществующих адресов)"
+
+
+Приложение Redux Sandbox (раздел 10)
+------
+
+**10-redux-ui** - Pаздел 10, "UI для Redux"
+
+**20-bind-action-creators** - Pаздел 10, "bindActionCreators()"
