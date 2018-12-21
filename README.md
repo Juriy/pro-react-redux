@@ -89,4 +89,14 @@
 
 **20-bind-action-creators** - Pаздел 10, "bindActionCreators()"
 
+**30-react-with-redux** - Pаздел 10, "Использование React и Redux" 
 
+**40-connect-map-state-to-props** - Pаздел 10, "react-redux и функция connect()"
+
+**50-map-dispatch-to-props** - Pаздел 10, "mapDispatchToProps()"
+
+**60-map-dispatch-to-props-as-object** - Раздел 10, "mapDispatchToProps в виде объекта"
+
+
+Приложение ReStore
+------
