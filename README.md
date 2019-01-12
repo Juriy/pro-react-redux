@@ -100,3 +100,8 @@
 
 Приложение ReStore
 ------
+
+**10-create-basic-components** - Pаздел 11, "Вспомогательные компоненты"
+
+**20-redux-components** - Pаздел 11, "Redux компоненты"
+
