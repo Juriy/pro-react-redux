@@ -106,3 +106,5 @@
 **20-redux-components** - Pаздел 11, "Redux компоненты"
 
 **30-connecting-components** - Pаздел 11, "Отправка действий в Redux Store (action dispatch)"
+
+**40-adding-styles** - Pаздел 11, "Стили"
