@@ -108,3 +108,7 @@
 **30-connecting-components** - Pаздел 11, "Отправка действий в Redux Store (action dispatch)"
 
 **40-adding-styles** - Pаздел 11, "Стили"
+
+**50-async-data** - Pаздел 11, "Работа с асинхронными данными"
+
+**60-error-handling** - Pаздел 11, "Обработка ошибок"
