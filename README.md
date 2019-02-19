@@ -113,7 +113,21 @@
 
 **60-error-handling** - Pаздел 11, "Обработка ошибок"
 
-**80-update-element-in-array** - - Pаздел 11, "Обновление элементов в массиве"
+**80-update-element-in-array** - Pаздел 11, "Обновление элементов в массиве"
 
-**90-delete-element-from-array** - - Pаздел 11, "Удаление элементов из массива"
+**90-delete-element-from-array** - Pаздел 11, "Удаление элементов из массива"
+
+**100-organizing-reducer-code** - Pаздел 11, "Организация кода reducer'а"
+
+**110-store-enhancers** - Pаздел 11, "Store Enhancers"
+
+**120-middleware** - Pаздел 11, "Middleware"
+
+**130-thunk** - Pаздел 11, "Thunk"
+
+
+Сборка React приложений (build-sandbox)
+------
+
+**10-empty-project** - Pаздел 12, "Создаём новый проект"
 
