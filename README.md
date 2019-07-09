@@ -131,3 +131,6 @@
 
 **10-empty-project** - Pаздел 12, "Создаём новый проект"
 
+**20-babel-config-files** - Pаздел 12, "Конфигурация Babel"
+
+**30-presets** - Pаздел 12, "Babel Presets"
