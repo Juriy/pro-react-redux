@@ -126,7 +126,7 @@
 **130-thunk** - Pаздел 11, "Thunk"
 
 
-Сборка React приложений (build-sandbox)
+Сборка React приложений - Babel (build-sandbox)
 ------
 
 **10-empty-project** - Pаздел 12, "Создаём новый проект"
@@ -134,3 +134,5 @@
 **20-babel-config-files** - Pаздел 12, "Конфигурация Babel"
 
 **30-presets** - Pаздел 12, "Babel Presets"
+
+**40-jsx** - Pаздел 12, "Работа с JSX" + "Организация зависимостей"
