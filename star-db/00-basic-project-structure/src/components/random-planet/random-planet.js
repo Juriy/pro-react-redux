@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './random-planet.css';
+import './random-planet.scss';
 
 export default class RandomPlanet extends Component {
 

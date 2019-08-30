@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './item-list.css';
+import './item-list.scss';
 
 export default class ItemList extends Component {
 

@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import Header from '../header';
-import RandomPlanet from '../random-planet';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import Header from "../header";
+import RandomPlanet from "../random-planet";
+import PersonDetails from "../person-details";
+import ItemList from "../item-list";
 
-import './app.css';
+import "./app.scss";
 
 const App = () => {
-  return (
-    <div>
+    return (
+        <div>
       <Header />
       <RandomPlanet />
 
@@ -22,7 +22,7 @@ const App = () => {
         </div>
       </div>
     </div>
-  );
-};
+    )
+}
 
 export default App;

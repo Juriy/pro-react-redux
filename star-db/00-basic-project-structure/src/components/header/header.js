@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import './header.css';
+import "./header.scss";
 
 const Header = () => {
-  return (
-    <div className="header d-flex">
+    return (
+        <div className="header d-flex">
       <h3>
         <a href="#">
           Star DB
@@ -22,7 +22,7 @@ const Header = () => {
         </li>
       </ul>
     </div>
-  );
+    )
 };
 
 export default Header;

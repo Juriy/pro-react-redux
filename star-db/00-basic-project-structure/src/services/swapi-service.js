@@ -1,41 +1,65 @@
-export default class SwapiService {
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
 
-  _apiBase = 'https://swapi.co/api';
 
-  async getResource(url) {
-    const res = await fetch(`${this._apiBase}${url}`);
+// ReactDOM.render(<App />, document.getElementById('root'));
 
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}` +
-        `, received ${res.status}`)
+
+// serviceWorker.unregister();
+
+export default class swapiService {
+   
+    async getResource(url) {
+
+        const urlBase = 'https://swapi.co/api/';
+
+        const res = await fetch(url);
+
+        if (!res.ok) {
+
+            throw new Error(`No existe la persona por este url ${url}  ${res.status}`);
+        }
+
+        return await res.json();
     }
-    return await res.json();
-  }
 
-  async getAllPeople() {
-    const res = await this.getResource(`/people/`);
-    return res.results;
-  }
+    async getAllPeople() {
+        const res = await this.getResource(`https://swapi.co/api/people`).then(body => {console.log(body)})
+        return res.results;
+    }
 
-  getPerson(id) {
-    return this.getResource(`/people/${id}/`);
-  }
+    async getAllStarships() {
+        const res = await this.getResource(`https://swapi.co/api/starships/`).then(body => {console.log(body)})
+        return res.results;
+    }
 
-  async getAllPlanets() {
-    const res = await this.getResource(`/planets/`);
-    return res.results;
-  }
+    async getAllPlanets() {
+        const res = await this.getResource(`https://swapi.co/api/planets/`).then(body => {console.log(body)})
+        return res.results;
+    }
 
-  getPlanet(id) {
-    return this.getResource(`/planets/${id}/`);
-  }
+    async getPerson(id) {
+        const res = await this.getResource(`https://swapi.co/api/people/${id}`).then(body => {console.log(body)})
+        return res;
+    }
 
-  async getAllStarships() {
-    const res = await this.getResource(`/starships/`);
-    return res.results;
-  }
+    async getPlanet(id) {
+        const res = await this.getResource(`https://swapi.co/api/planets/${id}`).then(body => {console.log(body)})
+        return res;
+    }
 
-  getStarship(id) {
-    return this.getResource(`/starships/${id}/`);
-  }
+    async getStarship(id) {
+        const res = await this.getResource(`https://swapi.co/api/starships/${id}`).then(body => {console.log(body)})
+        return res;
+    }
 }
+
+
+const swapi = new swapiService();
+swapi.getPerson('5');
+swapi.getAllPeople();
+
+
+
+
