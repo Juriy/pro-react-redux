@@ -136,3 +136,19 @@
 **30-presets** - Pаздел 12, "Babel Presets"
 
 **40-jsx** - Pаздел 12, "Работа с JSX" + "Организация зависимостей"
+
+
+Сборка React приложений - WebPack (build-sandbox)
+------
+
+**50-webpack-loader** - Pаздел 13, "WebPack Loader"
+
+**60-file-types** - Pаздел 13, "Loader'ы для разных типов файлов"
+
+**70-babel-loader** - Pаздел 13, "React и Babel Loader"
+
+**80-loader-composition** - Pаздел 13, "Композиция Loader'ов"
+
+**90-html-templates** - Pаздел 13, "HtmlWebpackPlugin - использование шаблонов"
+
+
