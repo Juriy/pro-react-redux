@@ -151,4 +151,5 @@
 
 **90-html-templates** - Pаздел 13, "HtmlWebpackPlugin - использование шаблонов"
 
+**100-dev-server** - Pаздел 13, "Wepback Dev Server"
 
