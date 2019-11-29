@@ -153,3 +153,4 @@
 
 **100-dev-server** - Pаздел 13, "Wepback Dev Server"
 
+**110-prod-config** - Pаздел 13, "Конфигурация для production"
