@@ -5,6 +5,7 @@ import './todo-list-item.css';
 export default class TodoListItem extends Component {
   state = {
     done: false,
+    important: false,
   };
 
   onLabelClick = () => {
@@ -13,27 +14,35 @@ export default class TodoListItem extends Component {
     });
   };
 
-  render() {
-    const {label, important = false} = this.props;
-    const {done} = this.state;
+  onImportantButtonClick = () => {
+    this.setState((state) => {
+      return {important: !state.important};
+    });
+  };
 
-    const style = {
-      color: important ? 'steelblue' : 'black',
-      fontWeight: important ? 'bold' : 'normal',
-    };
+  render() {
+    const {label} = this.props;
+    const {done, important} = this.state;
+    const DONE_CLASS_NAME = 'done'
+    const IMPORTANT_CLASS_NAME = 'important'
 
     const classes = ['todo-list-item'];
+
     if (done) {
-      classes.push('done');
+      classes.push(DONE_CLASS_NAME);
+    }
+
+    if (important) {
+      classes.push(IMPORTANT_CLASS_NAME);
     }
 
     return (
       <span className={classes.join(' ')}>
-        <span className="todo-list-item-label" style={style} onClick={this.onLabelClick}>
+        <span className="todo-list-item-label" onClick={this.onLabelClick}>
           {label}
         </span>
 
-        <button type="button" className="btn btn-outline-success btn-sm float-right">
+        <button type="button" className="btn btn-outline-success btn-sm float-right" onClick={this.onImportantButtonClick}>
           <i className="fa fa-exclamation" />
         </button>
 
