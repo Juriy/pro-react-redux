@@ -33,6 +33,9 @@ export default class App extends Component {
     };
 
     this.setState(({todoData}) => {
+      // const newArr = todoData.map((itemObj) => Object.assign({}, itemObj));
+      // newArr.push(newItem);
+
       return {todoData: [...todoData, newItem]};
     });
   };
