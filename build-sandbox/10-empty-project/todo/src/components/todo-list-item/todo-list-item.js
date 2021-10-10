@@ -25,8 +25,6 @@ export default class TodoListItem extends Component {
     const {label, onDeleteButtonClick} = this.props;
     const {done, important} = this.state;
 
-    console.log(this.props)
-
     const DONE_CLASS_NAME = 'done'
     const IMPORTANT_CLASS_NAME = 'important'
 
