@@ -13,6 +13,10 @@ const App = () => {
     {label: 'Have a lunch', important: false, id: 3},
   ];
 
+  const onDeleButtonClick = (id) => {
+    console.log(`click id number: ${id}`)
+  }
+
   return (
     <div className="todo-app">
       <AppHeader toDo={1} done={3} />
@@ -21,7 +25,7 @@ const App = () => {
         <ItemStatusFilter />
       </div>
 
-      <TodoList todos={todoData} />
+      <TodoList todos={todoData} onDeleButtonClick={onDeleButtonClick} />
     </div>
   );
 };
