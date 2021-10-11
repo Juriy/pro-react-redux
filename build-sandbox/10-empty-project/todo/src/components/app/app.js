@@ -32,12 +32,10 @@ export default class App extends Component {
     });
   };
 
-  togleBooleanAttribute = (id, BooleanAttribute) => {
-    this.setState(({todoData}) => {
-      const findIndex = todoData.findIndex((ItemData) => ItemData.id === id);
-      const newObj = {...todoData[findIndex], [BooleanAttribute]: !todoData[findIndex][BooleanAttribute]};
-      return {todoData: [...todoData.slice(0, findIndex), newObj, ...todoData.slice(findIndex + 1)]};
-    });
+  togleBooleanAttribute = (arr, id, attributeName) => {
+      const findIndex = arr.findIndex((ItemData) => ItemData.id === id);
+      const newObj = {...arr[findIndex], [attributeName]: !arr[findIndex][attributeName]};
+      return [...arr.slice(0, findIndex), newObj, ...arr.slice(findIndex + 1)];
   };
 
   calculateBooleanAttribute = (AttributeName, boolean) => {
@@ -45,11 +43,15 @@ export default class App extends Component {
   };
 
   onToggleDoneClick = (id) => {
-    this.togleBooleanAttribute(id, 'done');
+    this.setState(({todoData}) => {
+      return {todoData: this.togleBooleanAttribute(todoData, id, 'done')};
+    })
   };
 
   onToggleImportantClick = (id) => {
-    this.togleBooleanAttribute(id, 'important');
+    this.setState(({todoData}) => {
+      return {todoData: this.togleBooleanAttribute(todoData, id, 'important')};
+    })
   };
 
   state = {
