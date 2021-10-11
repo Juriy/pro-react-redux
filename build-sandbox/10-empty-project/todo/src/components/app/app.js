@@ -33,9 +33,10 @@ export default class App extends Component {
   };
 
   togleBooleanAttribute = (arr, id, attributeName) => {
-      const findIndex = arr.findIndex((ItemData) => ItemData.id === id);
-      const newObj = {...arr[findIndex], [attributeName]: !arr[findIndex][attributeName]};
-      return [...arr.slice(0, findIndex), newObj, ...arr.slice(findIndex + 1)];
+      const indexChangeObj = arr.findIndex((ItemData) => ItemData.id === id);
+      const oldObj = arr[indexChangeObj];
+      const newObj = {...oldObj, [attributeName]: !oldObj[attributeName]};
+      return [...arr.slice(0, indexChangeObj), newObj, ...arr.slice(indexChangeObj + 1)];
   };
 
   calculateBooleanAttribute = (AttributeName, boolean) => {
