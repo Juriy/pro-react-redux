@@ -1,3 +1,13 @@
 .item-add-form {
+  display: flex;
   margin-top: 10px;
+}
+
+.item-add-form input {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+.item-add-form button {
+  flex-shrink: 0;
 }
