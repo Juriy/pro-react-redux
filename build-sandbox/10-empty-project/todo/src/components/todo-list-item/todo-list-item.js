@@ -3,10 +3,6 @@ import React, {Component} from 'react';
 import './todo-list-item.css';
 
 export default class TodoListItem extends Component {
-  state = {
-    done: false,
-    important: false,
-  };
 
   render() {
     const {label, done, important, onDeleteButtonClick, onToggleDoneClick, onToggleImportantClick} = this.props;

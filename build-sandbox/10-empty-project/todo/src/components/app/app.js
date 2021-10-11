@@ -16,6 +16,7 @@ export default class App extends Component {
       id: this.maxId++,
       important: false,
       label: text,
+      isHidden: false,
     };
   };
 
@@ -33,10 +34,10 @@ export default class App extends Component {
   };
 
   togleBooleanAttribute = (arr, id, attributeName) => {
-      const indexChangeObj = arr.findIndex((ItemData) => ItemData.id === id);
-      const oldObj = arr[indexChangeObj];
-      const newObj = {...oldObj, [attributeName]: !oldObj[attributeName]};
-      return [...arr.slice(0, indexChangeObj), newObj, ...arr.slice(indexChangeObj + 1)];
+    const indexChangeObj = arr.findIndex((ItemData) => ItemData.id === id);
+    const oldObj = arr[indexChangeObj];
+    const newObj = {...oldObj, [attributeName]: !oldObj[attributeName]};
+    return [...arr.slice(0, indexChangeObj), newObj, ...arr.slice(indexChangeObj + 1)];
   };
 
   calculateBooleanAttribute = (AttributeName, boolean) => {
@@ -46,13 +47,27 @@ export default class App extends Component {
   onToggleDoneClick = (id) => {
     this.setState(({todoData}) => {
       return {todoData: this.togleBooleanAttribute(todoData, id, 'done')};
-    })
+    });
   };
 
   onToggleImportantClick = (id) => {
     this.setState(({todoData}) => {
       return {todoData: this.togleBooleanAttribute(todoData, id, 'important')};
-    })
+    });
+  };
+  
+
+  onSearchInput = (evt) => {
+    const valueInput = evt.target.value.toLowerCase();
+    // const isHidden = (itemIndex) => {return this.state[itemIndex].label.slice(0, valueInput.length).toLowerCase() === valueInput}
+    const isHidden = (itemIndex) => this.state.todoData[itemIndex].label.slice(0, valueInput.length).toLowerCase() !== valueInput
+    if (valueInput.length > 0) {
+      this.state.todoData.forEach((item, index) => {
+        if (!isHidden(index)) {
+
+        }
+      })
+    }
   };
 
   state = {
@@ -60,7 +75,7 @@ export default class App extends Component {
   };
 
   render() {
-    const {deleteButtonClick, addItemClick, onToggleImportantClick, onToggleDoneClick} = this;
+    const {deleteButtonClick, addItemClick, onToggleImportantClick, onToggleDoneClick, onSearchInput} = this;
     const {todoData} = this.state;
     const toDo = this.calculateBooleanAttribute('done', false);
     const done = this.calculateBooleanAttribute('done', true);
@@ -69,7 +84,7 @@ export default class App extends Component {
       <div className="todo-app">
         <AppHeader toDo={toDo} done={done} />
         <div className="top-panel d-flex">
-          <SearchPanel />
+          <SearchPanel onSearchInput={onSearchInput}/>
           <ItemStatusFilter />
         </div>
 

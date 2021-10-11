@@ -5,7 +5,12 @@ import './todo-list.css';
 
 const TodoList = ({todos, onDeleteButtonClick, onToggleDoneClick, onToggleImportantClick}) => {
   const elements = todos.map((item) => {
-    const {id, ...itemProps} = item;
+    const {id, isHidden, ...itemProps} = item;
+    
+    if (isHidden) {
+      return null;
+    }
+
     return (
       <li key={id} className="list-group-item">
         <TodoListItem
