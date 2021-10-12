@@ -15,7 +15,7 @@ export default class ItemStatusFilter extends Component {
     };
   };
 
-  onActiveFilterClick = (buttonId) => {
+  onActiveFilterButtonClick = (buttonId) => {
     this.setState(({buttons}) => {
       const newArr = [
         ...buttons.map((button, index) => {
@@ -35,7 +35,7 @@ export default class ItemStatusFilter extends Component {
   };
 
   render() {
-    const {onActiveFilterClick} = this;
+    const {onActiveFilterButtonClick} = this;
     const {buttons} = this.state;
     const activeButtonClasses = 'btn btn-info';
     const inactiveButtonClasses = 'btn btn-outline-secondary';
@@ -45,7 +45,7 @@ export default class ItemStatusFilter extends Component {
       const className = isActive ? activeButtonClasses : inactiveButtonClasses;
 
       return (
-        <button key={id} type="button" className={className} onClick={() => onActiveFilterClick(id)}>
+        <button key={id} type="button" className={className} onClick={() => onActiveFilterButtonClick(id)}>
           {label}
         </button>
       );
