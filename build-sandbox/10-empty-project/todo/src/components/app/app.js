@@ -55,19 +55,36 @@ export default class App extends Component {
       return {todoData: this.togleBooleanAttribute(todoData, id, 'important')};
     });
   };
-  
 
   onSearchInput = (evt) => {
-    const valueInput = evt.target.value.toLowerCase();
-    // const isHidden = (itemIndex) => {return this.state[itemIndex].label.slice(0, valueInput.length).toLowerCase() === valueInput}
-    const isHidden = (itemIndex) => this.state.todoData[itemIndex].label.slice(0, valueInput.length).toLowerCase() !== valueInput
-    if (valueInput.length > 0) {
-      this.state.todoData.forEach((item, index) => {
-        if (!isHidden(index)) {
+    const valueInput = evt.target.value;
+    const isHidden = (itemIndex) => {
+      const label = this.state.todoData[itemIndex].label;
+      return label.slice(0, valueInput.length).toLowerCase() !== valueInput.toLowerCase();
+    };
 
-        }
-      })
+    if (valueInput === '') {
+      this.setState(({todoData}) => {
+        const newArr = [
+          ...todoData.map((item) => {
+            return {...item, isHidden: false};
+          }),
+        ];
+        return {todoData: newArr};
+      });
     }
+
+    this.setState(({todoData}) => {
+      const newArr = [
+        ...todoData.map((item, index) => {
+          if (isHidden(index)) {
+            return {...item, isHidden: true};
+          }
+          return {...item, isHidden: false};
+        }),
+      ];
+      return {todoData: newArr};
+    });
   };
 
   state = {
@@ -84,7 +101,7 @@ export default class App extends Component {
       <div className="todo-app">
         <AppHeader toDo={toDo} done={done} />
         <div className="top-panel d-flex">
-          <SearchPanel onSearchInput={onSearchInput}/>
+          <SearchPanel onSearchInput={onSearchInput} />
           <ItemStatusFilter />
         </div>
 
