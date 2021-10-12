@@ -58,11 +58,11 @@ export default class App extends Component {
 
   onSearchInput = (evt) => {
     const valueInput = evt.target.value;
-    const isHidden = (itemIndex) => {
+    const isSameString = (itemIndex) => {
       const label = this.state.todoData[itemIndex].label;
       return label.slice(0, valueInput.length).toLowerCase() !== valueInput.toLowerCase();
     };
-
+    
     if (valueInput === '') {
       this.setState(({todoData}) => {
         const newArr = [
@@ -77,7 +77,7 @@ export default class App extends Component {
     this.setState(({todoData}) => {
       const newArr = [
         ...todoData.map((item, index) => {
-          if (isHidden(index)) {
+          if (isSameString(index)) {
             return {...item, isHidden: true};
           }
           return {...item, isHidden: false};

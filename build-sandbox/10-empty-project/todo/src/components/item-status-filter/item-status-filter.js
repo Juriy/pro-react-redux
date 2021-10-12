@@ -3,16 +3,54 @@ import React, {Component} from 'react';
 import './item-status-filter.css';
 
 export default class ItemStatusFilter extends Component {
+  maxId = 200;
+  activeButtonClasses = 'btn btn-info';
+  inactiveButtonClasses = 'btn btn-outline-secondary';
+
+  createButtonObj = (label, isActive) => {
+    return {
+      id: this.maxId++,
+      isActive,
+      label,
+    };
+  };
+
+  onActiveFilterClick = (buttonId) => {
+    this.setState(({buttons}) => {
+      const newArr = [
+        ...buttons.map((button, index) => {
+          if (buttonId === button.id) {
+            return {...button, isActive: true};
+          }
+          return {...button, isActive: false};
+        }),
+      ];
+
+      return {buttons: newArr};
+    });
+  };
+
+  state = {
+    buttons: [this.createButtonObj('all', true), this.createButtonObj('active'), this.createButtonObj('done')],
+  };
+
   render() {
-    return (
-      <div className="btn-group">
-        <button type="button"
-                className="btn btn-info">All</button>
-        <button type="button"
-                className="btn btn-outline-secondary">Active</button>
-        <button type="button"
-                className="btn btn-outline-secondary">Done</button>
-      </div>
-    );  
+    const {onActiveFilterClick} = this;
+    const {buttons} = this.state;
+    const activeButtonClasses = 'btn btn-info';
+    const inactiveButtonClasses = 'btn btn-outline-secondary';
+
+    const elemenButtons = buttons.map((button) => {
+      const {id, label, isActive} = button;
+      const className = isActive ? activeButtonClasses : inactiveButtonClasses;
+
+      return (
+        <button key={id} type="button" className={className} onClick={() => onActiveFilterClick(id)}>
+          {label}
+        </button>
+      );
+    });
+
+    return <div className="btn-group">{elemenButtons}</div>;
   }
 }
