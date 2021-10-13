@@ -3,8 +3,22 @@ import React, {Component} from 'react';
 import './item-status-filter.css';
 
 export default class ItemStatusFilter extends Component {
+  createButtonObj = (label, isActive) => {
+    return {
+      id: label,
+      isActive,
+      label,
+    };
+  };
+
+  state = {
+    buttons: [this.createButtonObj('all', true), this.createButtonObj('active'), this.createButtonObj('done')],
+  }
+
   render() {
-    const {buttons, onFilterButtonClick} = this.props;
+    const {onFilterButtonClick} = this.props;
+    const {buttons} = this.state;
+
     const activeButtonClasses = 'btn btn-info';
     const inactiveButtonClasses = 'btn btn-outline-secondary';
 
