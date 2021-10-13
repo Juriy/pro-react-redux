@@ -58,11 +58,11 @@ export default class App extends Component {
   };
 
   onSearchInput = (evt) => {
-    console.log('hello: onSearchInput')
+    console.log('hello: onSearchInput');
   };
 
   onFilterButtonClick = (buttonId, label) => {
-    console.log('hello: onFilterButtonClick')
+    console.log('hello: onFilterButtonClick');
   };
 
   state = {
