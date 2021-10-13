@@ -41,10 +41,6 @@ export default class App extends Component {
     return [...arr.slice(0, indexChangeObj), newObj, ...arr.slice(indexChangeObj + 1)];
   };
 
-  calculateBooleanAttribute = (AttributeName, boolean) => {
-    return this.state.todoData.filter((itemToDo) => itemToDo[AttributeName] === boolean).length;
-  };
-
   onToggleDoneClick = (id) => {
     this.setState(({todoData}) => {
       return {todoData: this.togleBooleanAttribute(todoData, id, 'done')};
@@ -80,8 +76,8 @@ export default class App extends Component {
     } = this;
 
     const {todoData, buttons} = this.state;
-    const toDo = this.calculateBooleanAttribute('done', false);
-    const done = this.calculateBooleanAttribute('done', true);
+    const toDo = this.state.todoData.filter((itemToDo) => itemToDo.done === false).length;
+    const done = this.state.todoData.filter((itemToDo) => itemToDo.done === true).length;
 
     return (
       <div className="todo-app">
