@@ -21,6 +21,14 @@ export default class App extends Component {
     };
   };
 
+  createButtonObj = (label, isActive = false) => {
+    return {
+      id: label,
+      isActive,
+      label,
+    };
+  };
+
   deleteButtonClick = (id) => {
     this.setState(({todoData}) => {
       return {todoData: todoData.filter((data) => data.id !== id)};
@@ -54,14 +62,17 @@ export default class App extends Component {
   };
 
   onSearchInput = (evt) => {
-    console.log('hello: onSearchInput');
+    this.setState({searchPhrase: evt.target.value.toLowerCase()});
   };
 
   onFilterButtonClick = (buttonId, label) => {
-    console.log('hello: onFilterButtonClick');
+    this.setState({activeFilter: label})
   };
 
   state = {
+    activeFilter: 'all',
+    buttons: [this.createButtonObj('all'), this.createButtonObj('active'), this.createButtonObj('done')],
+    searchPhrase: '',
     todoData: [this.createItem('Drink Coffee'), this.createItem('Make Awesome App'), this.createItem('Have a lunch')],
   };
 
@@ -74,10 +85,19 @@ export default class App extends Component {
       onSearchInput,
       onFilterButtonClick,
     } = this;
+    
+    // const filteredStateTodoData = (arr, activeFilter) => {
+    //   return arr.filter((item) => {
+    //     return !item.done;
+    //   })
+    // }
 
     const {todoData, buttons} = this.state;
     const toDo = this.state.todoData.filter((itemToDo) => itemToDo.done === false).length;
     const done = this.state.todoData.filter((itemToDo) => itemToDo.done === true).length;
+    const filteredTodoData = todoData.filter(({label}) => label.toLowerCase().indexOf(this.state.searchPhrase) > -1);
+    // const visibleTodoData = filteredStateTodoData(filteredTodoData);
+
 
     return (
       <div className="todo-app">
@@ -88,7 +108,7 @@ export default class App extends Component {
         </div>
 
         <TodoList
-          todos={todoData}
+          todos={filteredTodoData}
           onDeleteButtonClick={deleteButtonClick}
           onToggleDoneClick={onToggleDoneClick}
           onToggleImportantClick={onToggleImportantClick}
