@@ -10,19 +10,24 @@ import {Component} from 'react/cjs/react.production.min';
 
 export default class App extends Component {
   maxId = 100;
-  createItem = (text) => {
+  createItem = (text, important = false) => {
     return {
       done: false,
       id: this.maxId++,
-      important: false,
+      important,
       label: text,
     };
   };
 
   state = {
     activeFilter: 'all',
+    isImportantFilter: false,
     searchPhrase: '',
-    todoData: [this.createItem('Drink Coffee'), this.createItem('Make Awesome App'), this.createItem('Have a lunch')],
+    todoData: [
+      this.createItem('Drink Coffee'),
+      this.createItem('Make Awesome App'),
+      this.createItem('Have a lunch', true),
+    ],
   };
 
   deleteButtonClick = (id) => {
@@ -77,12 +82,12 @@ export default class App extends Component {
       onFilterButtonClick,
     } = this;
 
-    const {todoData, buttons, activeFilter, searchPhrase} = this.state;
+    const {todoData, buttons, activeFilter, searchPhrase, isImportantFilter} = this.state;
 
     const getFilterStatusTodoData = (arr, activeFilterStatus) => {
       const filter = {
-        active: arr.filter((el) => !el.done),
-        done: arr.filter((el) => el.done),
+        active: arr.filter(({done}) => !done),
+        done: arr.filter(({done}) => done),
         all: arr,
       };
       return filter[activeFilterStatus] || arr;
@@ -92,17 +97,29 @@ export default class App extends Component {
       return arr.filter(({label}) => label.toLowerCase().indexOf(searchPhrase) > -1);
     };
 
+    const getImportantItemsTodoData = (arr, isImportantFilter) => {
+      return isImportantFilter ? arr.filter(({important}) => important) : arr;
+    };
+
     const toDo = todoData.filter((itemToDo) => !itemToDo.done).length;
     const done = todoData.filter((itemToDo) => itemToDo.done).length;
     const filterNames = getFilterNameItemsTodoData(todoData, searchPhrase);
-    const renderTodoData = getFilterStatusTodoData(filterNames, activeFilter);
+    const filterStatusTodoData = getFilterStatusTodoData(filterNames, activeFilter);
+    const importantTodoData = getImportantItemsTodoData(filterStatusTodoData, isImportantFilter);
+
+    const renderTodoData = importantTodoData;
 
     return (
       <div className="todo-app">
         <AppHeader toDo={toDo} done={done} />
         <div className="top-panel d-flex">
           <SearchPanel onSearchInput={onSearchInput} />
-          <ItemStatusFilter buttons={buttons} activeFilter={activeFilter} onFilterButtonClick={onFilterButtonClick} />
+          <ItemStatusFilter
+            activeFilter={activeFilter}
+            buttons={buttons}
+            isImportantFilter={isImportantFilter}
+            onFilterButtonClick={onFilterButtonClick}
+          />
         </div>
         <TodoList
           todos={renderTodoData}

@@ -4,5 +4,11 @@
 }
 
 .top-panel {
+  display: flex;
+  flex-wrap: wrap;
   margin: 1rem 0;
+}
+
+.top-panel .form-control {
+  margin-bottom: 10px;
 }

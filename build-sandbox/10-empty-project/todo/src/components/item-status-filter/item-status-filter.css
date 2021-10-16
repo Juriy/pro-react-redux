@@ -1,0 +1,8 @@
+.item-status-filter {
+    display: flex;
+    flex-grow: 1;
+}
+
+.item-status-filter .btn {
+    flex-grow: 1;
+}
