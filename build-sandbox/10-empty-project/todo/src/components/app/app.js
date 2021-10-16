@@ -15,7 +15,6 @@ export default class App extends Component {
       done: false,
       id: this.maxId++,
       important: false,
-      isHidden: false,
       label: text,
     };
   };
