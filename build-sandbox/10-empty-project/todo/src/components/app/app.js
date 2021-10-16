@@ -63,8 +63,8 @@ export default class App extends Component {
 
   onFilterButtonClick = (buttonName) => {
     this.setState({
-      activeFilter: buttonName
-    })
+      activeFilter: buttonName,
+    });
   };
 
   render() {
@@ -77,20 +77,25 @@ export default class App extends Component {
       onFilterButtonClick,
     } = this;
 
-    const {todoData, buttons, activeFilter} = this.state;
-    const toDo = this.state.todoData.filter((itemToDo) => itemToDo.done === false).length;
-    const done = this.state.todoData.filter((itemToDo) => itemToDo.done === true).length;
-    const filteredInSearchTodoData = todoData.filter(
-      ({label}) => label.toLowerCase().indexOf(this.state.searchPhrase) > -1,
-    );
+    const {todoData, buttons, activeFilter, searchPhrase} = this.state;
 
-    const filter = {
-      active: filteredInSearchTodoData.filter((el) => !el.done),
-      done: filteredInSearchTodoData.filter((el) => el.done),
-      all: filteredInSearchTodoData,
+    const getFilterStatusTodoData = (arr, activeFilterStatus) => {
+      const filter = {
+        active: arr.filter((el) => !el.done),
+        done: arr.filter((el) => el.done),
+        all: arr,
+      };
+      return filter[activeFilterStatus] || arr;
     };
 
-    const visibleTodoData = filter[activeFilter] || filteredInSearchTodoData;
+    const getFilterNameItemsTodoData = (arr, searchPhrase) => {
+      return arr.filter(({label}) => label.toLowerCase().indexOf(searchPhrase) > -1);
+    };
+
+    const toDo = todoData.filter((itemToDo) => !itemToDo.done).length;
+    const done = todoData.filter((itemToDo) => itemToDo.done).length;
+    const filterNames = getFilterNameItemsTodoData(todoData, searchPhrase);
+    const renderTodoData = getFilterStatusTodoData(filterNames, activeFilter);
 
     return (
       <div className="todo-app">
@@ -99,9 +104,8 @@ export default class App extends Component {
           <SearchPanel onSearchInput={onSearchInput} />
           <ItemStatusFilter buttons={buttons} activeFilter={activeFilter} onFilterButtonClick={onFilterButtonClick} />
         </div>
-
         <TodoList
-          todos={visibleTodoData}
+          todos={renderTodoData}
           onDeleteButtonClick={deleteButtonClick}
           onToggleDoneClick={onToggleDoneClick}
           onToggleImportantClick={onToggleImportantClick}
