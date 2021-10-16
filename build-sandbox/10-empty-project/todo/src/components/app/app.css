@@ -12,3 +12,7 @@
 .top-panel .form-control {
   margin-bottom: 10px;
 }
+
+.todo-app .filter-button-toggle-importance {
+  margin-left: 10px;
+}

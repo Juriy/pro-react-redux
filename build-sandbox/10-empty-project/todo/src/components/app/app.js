@@ -6,6 +6,7 @@ import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
 import ItemStatusFilter from '../item-status-filter';
 import ItemAddForm from '../item-add-form';
+import FilterButtonToggleImportance from '../filter-button-toggle-importance';
 import {Component} from 'react/cjs/react.production.min';
 
 export default class App extends Component {
@@ -20,7 +21,7 @@ export default class App extends Component {
   };
 
   state = {
-    activeFilter: 'all',
+    activeFilter: 'active',
     isImportantFilter: false,
     searchPhrase: '',
     todoData: [
@@ -74,9 +75,15 @@ export default class App extends Component {
 
   onFilterImportantClick = () => {
     this.setState(({isImportantFilter}) => {
-      return {isImportantFilter: !isImportantFilter}
+      return {isImportantFilter: !isImportantFilter};
     });
-  };  
+  };
+
+  onToggleImportanceClick = () => {
+    this.setState(({isImportantFilter}) => {
+      return {isImportantFilter: !isImportantFilter}
+    })
+  };
 
   render() {
     const {
@@ -87,9 +94,10 @@ export default class App extends Component {
       onSearchInput,
       onFilterButtonClick,
       onFilterImportantClick,
+      onToggleImportanceClick,
     } = this;
 
-    const {todoData, buttons, activeFilter, searchPhrase, isImportantFilter} = this.state;
+    const {todoData, activeFilter, searchPhrase, isImportantFilter} = this.state;
 
     const getFilterStatusTodoData = (arr, activeFilterStatus) => {
       const filter = {
@@ -123,11 +131,16 @@ export default class App extends Component {
           <SearchPanel onSearchInput={onSearchInput} />
           <ItemStatusFilter
             activeFilter={activeFilter}
-            buttons={buttons}
             isImportantFilter={isImportantFilter}
             onFilterButtonClick={onFilterButtonClick}
             onFilterImportantClick={onFilterImportantClick}
+            onToggleImportanceClick={onToggleImportanceClick}
           />
+          <FilterButtonToggleImportance
+            label={'Important'}
+            isActive={isImportantFilter}
+            onButtonClick={onToggleImportanceClick}
+          />          
         </div>
         <TodoList
           todos={renderTodoData}
