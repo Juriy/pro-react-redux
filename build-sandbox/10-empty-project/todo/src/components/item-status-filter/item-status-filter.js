@@ -3,10 +3,10 @@ import React, {Component} from 'react';
 import './item-status-filter.css';
 
 export default class ItemStatusFilter extends Component {
-  createButtonObj = (label, name, isToggleButton = false) => {
+  createButtonObj = (label, name, isImportantButton = false) => {
     return {
       id: label,
-      isToggleButton,
+      isImportantButton,
       label,
       name,
     };
@@ -23,16 +23,27 @@ export default class ItemStatusFilter extends Component {
 
   render() {
     const {buttons} = this.state;
-    const {onFilterButtonClick, activeFilter} = this.props;
-    const activeButtonClasses = 'btn btn-info';
-    const inactiveButtonClasses = 'btn btn-outline-secondary';
+    const {onFilterButtonClick, activeFilter, isImportantFilter, onFilterImportantClick} = this.props;
+    const activeButtonClasses = 'btn-info';
+    const inactiveButtonClasses = 'btn-outline-secondary';
 
     const elementButtons = buttons.map((button) => {
-      const {id, name, label} = button;
+      const {id, name, label, isImportantButton} = button;
+      
+      if (isImportantButton) {
+        const activeButtonClasses = 'btn-success';
+        const inactiveButtonClasses = 'btn-outline-success';
+        const className = isImportantFilter ? activeButtonClasses : inactiveButtonClasses;
+        return (
+          <button key={id} type="button" className={`btn ${className}`} onClick={onFilterImportantClick}>
+            {label}
+          </button>
+        );
+      }
+      
       const className = activeFilter === name ? activeButtonClasses : inactiveButtonClasses;
-
       return (
-        <button key={id} type="button" className={className} onClick={() => onFilterButtonClick(name)}>
+        <button key={id} type="button" className={`btn ${className}`} onClick={() => onFilterButtonClick(name)}>
           {label}
         </button>
       );

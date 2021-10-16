@@ -72,6 +72,12 @@ export default class App extends Component {
     });
   };
 
+  onFilterImportantClick = () => {
+    this.setState(({isImportantFilter}) => {
+      return {isImportantFilter: !isImportantFilter}
+    });
+  };  
+
   render() {
     const {
       deleteButtonClick,
@@ -80,6 +86,7 @@ export default class App extends Component {
       onToggleDoneClick,
       onSearchInput,
       onFilterButtonClick,
+      onFilterImportantClick,
     } = this;
 
     const {todoData, buttons, activeFilter, searchPhrase, isImportantFilter} = this.state;
@@ -119,6 +126,7 @@ export default class App extends Component {
             buttons={buttons}
             isImportantFilter={isImportantFilter}
             onFilterButtonClick={onFilterButtonClick}
+            onFilterImportantClick={onFilterImportantClick}
           />
         </div>
         <TodoList
