@@ -57,8 +57,8 @@ export default class App extends Component {
     });
   };
 
-  onSearchInput = (evt) => {
-    this.setState({searchPhrase: evt.target.value.toLowerCase()});
+  onSearchInput = (searchPhrase) => {
+    this.setState({searchPhrase: searchPhrase.toLowerCase()});
   };
 
   onFilterButtonClick = (buttonName) => {

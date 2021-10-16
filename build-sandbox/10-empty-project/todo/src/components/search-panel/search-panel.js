@@ -20,7 +20,7 @@ export default class SearchPanel extends Component {
         placeholder="type to search"
         type="text"
         value={this.state.searchPhrase}
-        onChange={this.props.onSearchInput}
+        onChange={this.onSearchInput}
       />
     );
   }
