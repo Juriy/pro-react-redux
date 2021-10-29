@@ -20,7 +20,7 @@ export default class RandomPlanet extends Component {
     this.setState({planet})
   };
 
-  updatePlanet() {ё
+  updatePlanet() {   
     const id = Math.floor(Math.random()*25) + 2;
     this.swapiService
       .getPlanet(id)  
