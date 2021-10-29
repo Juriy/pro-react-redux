@@ -26,11 +26,9 @@ export default class SwapiService {
     return res.results.map(this._transformPlanet);
   }
 
-  getPlanet(id) {
-    return this.getResource(`/planets/${id}/`);
-
-    // const planet = await this.getResource(`/planets/${id}/`);
-    // return this._transformPlanet(planet);
+  async getPlanet(id) {
+    const planet = await this.getResource(`/planets/${id}/`);
+    return this._transformPlanet(planet);
   }
 
   async getAllStarships() {
@@ -42,15 +40,18 @@ export default class SwapiService {
     return this.getResource(`/starships/${id}/`);
   }
 
-  // _transformPlanet() {
-  //   const idRegExp = /\/([0-9]*)\/$/;
-  //   const id = planet.url.match(idRegExp)[1];
-  //   return {
-  //     id: 2,
-  //     name: planet.name,
-  //     population: planet.population,
-  //     rotation: planet.rotation_period,
-  //     diameter: planet.diameter,
-  //   }
-  // }
+  _extractId (item) {
+    const idRegExp = /\/([0-9]*)\/$/;
+    return item.url.match(idRegExp)[1];
+  }
+
+  _transformPlanet(planet) {
+    return {
+      id: this._extractId(planet),
+      name: planet.name,
+      population: planet.population,
+      rotation: planet.rotation_period,
+      diameter: planet.diameter,
+    }
+  }
 }
