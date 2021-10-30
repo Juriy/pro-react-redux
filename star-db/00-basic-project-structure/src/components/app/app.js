@@ -8,6 +8,10 @@ import PersonDetails from '../person-details';
 import './app.css';
 
 const App = () => {
+  const onPersonSelected = (id) => {
+    console.log(id)
+  }
+
   return (
     <div>
       <Header />
@@ -15,7 +19,7 @@ const App = () => {
 
       <div className="row mb2">
         <div className="col-md-6">
-          <ItemList />
+          <ItemList onItemSelected={onPersonSelected}/>
         </div>
         <div className="col-md-6">
           <PersonDetails />
