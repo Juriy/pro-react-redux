@@ -12,20 +12,22 @@ export default class PersonDetails extends Component {
 
   updatePerson() {
     const {personId} = this.props;
-    if (personId) {
-      return
+    if (!personId) {
+      return;
     }
-
+    
     this.swapiService
       .getPerson(personId)
       .then((person) => {
-        this.setState({person})
+        this.setState({person});
       })
+
+        
   }
 
-  // componentDidMount() {
-  //   this.updatePerson()
-  // }
+  componentDidMount() {
+    this.updatePerson()
+  }
   
   render() {
     return (
