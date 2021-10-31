@@ -13,8 +13,10 @@ export default class SwapiService {
   }
 
   async getAllPeople() {
+    const MAX_LENGTH = 5;
     const res = await this.getResource(`/people/`);
-    return res.results.map(this._transformPerson);
+    const result = res.results.map(this._transformPerson); 
+    return result.slice(0, MAX_LENGTH) // обрезаеться массив, что бы красиво отображать в обучении;
   }
 
   async getPerson(id) {

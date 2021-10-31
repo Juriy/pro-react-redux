@@ -1,5 +1,18 @@
+.item-list {
+  min-height: 247px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .item-list {
+    margin-bottom: 16px;
+  }
+}
+
 .item-list .list-group-item {
   cursor: pointer;
+  flex-grow: 1;
 }
 
 .item-list .list-group-item:hover {
