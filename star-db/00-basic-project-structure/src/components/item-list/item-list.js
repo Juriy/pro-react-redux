@@ -12,8 +12,8 @@ export default class ItemList extends Component {
   }
 
   componentDidMount() {
-    this.swapiService
-      .getAllPeople()
+    const {getData} = this.props;
+    getData()
         .then((pipleList) => {
           this.setState({
             pipleList
@@ -22,7 +22,7 @@ export default class ItemList extends Component {
   }
 
   renderItems = (arr) => {
-    return arr.map(({id, name}, i) => {
+    return arr.map(({id, name}) => {
       return (
         <li 
           key={id} 
