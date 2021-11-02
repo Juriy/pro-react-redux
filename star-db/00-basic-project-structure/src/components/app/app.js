@@ -8,6 +8,9 @@ import PeoplePage from '../people-page/people-page';
 
 import './app.css';
 import SwapiService from '../../services/swapi-service';
+import Row from '../row';
+import ErrorBoundry from '../error-boundry';
+import ItemDetails from '../Item-details';
 
 export default class App extends Component {
   
@@ -37,18 +40,34 @@ export default class App extends Component {
   }
   
   render() {
-
     if (this.state.hasRenderError) {
       return <ErrorIndicator />
     }
+
+    const {getPerson, getStarship} = this.swapiService;
+
+    const persenDetails = (
+      <ItemDetails 
+        itemId="11"
+        getData={getPerson}
+        getImageUrl={() => {}} />
+    )
+
+    const starhipDetails = (
+      <ItemDetails 
+        itemId="5"
+        getData={getStarship}
+        getImageUrl={() => {}} />
+    )
     
     return (
-      <div>
+      <ErrorBoundry>
         <Header />
-        <RandomPlanet />
-        <ErrorButton />
-        <PeoplePage />
-      </div>
+        <Row left={persenDetails} right={starhipDetails}/>
+        {/* <RandomPlanet /> */}
+        {/* <ErrorButton /> */}
+        {/* <PeoplePage /> */}
+      </ErrorBoundry>
     )
   };
 };

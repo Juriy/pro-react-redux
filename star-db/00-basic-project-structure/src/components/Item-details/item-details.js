@@ -1,53 +1,56 @@
 import React, { Component } from 'react';
 
-import './person-details.css';
+import './item-details.css';
 import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner/spinner';
 import ErrorButton from '../error-button/error-button';
 
-export default class PersonDetails extends Component {
+export default class ItemDetails extends Component {
   swapiService = new SwapiService();
 
   state = {
-    person: null,
-    hasLoading: false
+    item: null,
+    hasLoading: false,
+    image: null,
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.personId !== prevProps.personId) {
-      this.updatePerson();
+    if (this.props.itemId !== prevProps.itemId) {
+      this.updateItem();
     }
   }
 
-  updatePerson() {
-    const {personId} = this.props;
-    if (!personId) {
+  updateItem() {
+    const {itemId, getData, getImageUrl} = this.props;
+    if (!itemId) {
       return;
     }
     
     this.setState({hasLoading: true})
-
-    this.swapiService
-      .getPerson(personId)
-      .then((person) => {
-        this.setState({person, hasLoading: false});
+    getData(itemId)
+      .then((item) => {
+        this.setState({
+          item, 
+          hasLoading: false,
+          image: getImageUrl(item),
+        });
       })     
   }
 
   componentDidMount() {
-    this.updatePerson()
+    this.updateItem()
   }
   
   render() {
-    const {person, hasLoading} = this.state
-    const hasData = person && !hasLoading;
+    const {item, hasLoading} = this.state
+    const hasData = item && !hasLoading;
     
     const lolderIndicator = hasLoading ? <Spinner />: null;
-    const content = hasData ? <PersonDetailsContent person={person} /> : null;
-    const emptyContent = person ? null: <EmptyContent />;
+    const content = hasData ? <ItemDetailsContent item={item} /> : null;
+    const emptyContent = item ? null: <EmptyContent />;
     
     return (
-      <div className="person-details card">
+      <div className="item-details card">
         {lolderIndicator}
         {content}
         {emptyContent}
@@ -56,11 +59,12 @@ export default class PersonDetails extends Component {
   }
 }
 
-const PersonDetailsContent = ({person}) => {
-  const {id, name, gender, birthYear, eyeColor} = person;
+const ItemDetailsContent = ({item}) => {
+  const {id, name, gender, birthYear, eyeColor} = item;
+
   return (
     <React.Fragment>
-      <img className="person-image" alt=""
+      <img className="Item-image" alt=""
       src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
 
       <div className="card-body">
@@ -86,5 +90,5 @@ const PersonDetailsContent = ({person}) => {
 }
 
 const EmptyContent = () => {
-  return <span>Select a person from a list</span>;
+  return <span>Select a Item from a list</span>;
 }
