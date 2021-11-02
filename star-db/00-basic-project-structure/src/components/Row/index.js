@@ -1,3 +1,3 @@
-import Row from './Row';
+import Row from './row';
 
 export default Row;
