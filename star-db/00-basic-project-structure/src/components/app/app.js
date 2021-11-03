@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
-import Header from '../header';
-import RandomPlanet from '../random-planet';
-import ErrorButton from '../error-button/error-button';
-import ErrorIndicator from '../error-indicator/error-indicator';
-import PeoplePage from '../people-page/people-page';
-
 import './app.css';
+import Header from '../header';
+import ErrorIndicator from '../error-indicator/error-indicator';
 import SwapiService from '../../services/swapi-service';
 import Row from '../row';
 import ErrorBoundry from '../error-boundry';
-import ItemDetails from '../Item-details';
+import ItemDetails, { Record } from '../Item-details/item-details';
 
 export default class App extends Component {
   
@@ -55,7 +51,11 @@ export default class App extends Component {
       <ItemDetails 
         itemId="11"
         getData={getPerson}
-        getImageUrl={getPersonImage} />
+        getImageUrl={getPersonImage}>              
+        <Record field={"Gender"} label={"gender"} />
+        <Record field={"Birth Year"} label={"birthYear"} />
+        <Record field={"Eye Color"} label={"eyeColor"} />
+      </ItemDetails>
     )
 
     const starhipDetails = (
