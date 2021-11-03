@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { Component } from 'react';
 
 import './item-list.css';
@@ -19,12 +18,14 @@ export default class ItemList extends Component {
         this.setState({
           pipleList
         });
+        console.log(this.state)
       })
   }
 
   renderItems = (arr) => {
     return arr.map((item) => {
       const {id} = item;
+      // @ts-ignore
       const label = this.props.children(item)
       return (
         <li 

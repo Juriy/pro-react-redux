@@ -8,6 +8,7 @@ import SwapiService from '../../services/swapi-service';
 import Row from '../row';
 import ErrorBoundry from '../error-boundry';
 import ItemDetails, { Record } from '../Item-details/item-details';
+import ItemList from '../item-list';
 
 export default class App extends Component {
   
@@ -69,14 +70,36 @@ export default class App extends Component {
           <Record field={"costInCredits"} label={"Cost:"} />          
       </ItemDetails>
     )
+
+    const itemListLeft = (
+      <ItemList 
+        onItemSelected={this.onPersonSelected} 
+        getData={this.swapiService.getAllPeople}>
+          {(item) => (
+            `${item.name} (${item.birthYear})`
+          )}
+      </ItemList>      
+    )
     
+    const itemListRight = (
+      <ItemList 
+        onItemSelected={this.onPersonSelected} 
+        getData={this.swapiService.getAllPlanets}>
+          {(item) => (
+            `${item.name} (${item.diameter})`
+          )}
+      </ItemList>      
+    )
+
     return (
       <ErrorBoundry>
         <Header />
-        <Row left={persenDetails} right={starhipDetails}/>
+        {/* <Row left={persenDetails} right={starhipDetails}/> */}
+        <Row left={itemListLeft} right={itemListRight}/>
         {/* <RandomPlanet /> */}
         {/* <ErrorButton /> */}
         {/* <PeoplePage /> */}
+
       </ErrorBoundry>
     )
   };
