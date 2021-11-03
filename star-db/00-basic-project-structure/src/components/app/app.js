@@ -40,24 +40,29 @@ export default class App extends Component {
   }
   
   render() {
+    const {
+      getPerson, 
+      getStarship,
+      getPersonImage,
+      getStarshipImage,
+    } = this.swapiService;
+
     if (this.state.hasRenderError) {
       return <ErrorIndicator />
     }
-
-    const {getPerson, getStarship} = this.swapiService;
 
     const persenDetails = (
       <ItemDetails 
         itemId="11"
         getData={getPerson}
-        getImageUrl={() => {}} />
+        getImageUrl={getPersonImage} />
     )
 
     const starhipDetails = (
       <ItemDetails 
         itemId="5"
         getData={getStarship}
-        getImageUrl={() => {}} />
+        getImageUrl={getStarshipImage} />
     )
     
     return (

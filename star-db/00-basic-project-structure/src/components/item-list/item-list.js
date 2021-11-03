@@ -15,11 +15,11 @@ export default class ItemList extends Component {
   componentDidMount() {
     const {getData} = this.props;
     getData()
-        .then((pipleList) => {
-          this.setState({
-            pipleList
-          });
-        })
+      .then((pipleList) => {
+        this.setState({
+          pipleList
+        });
+      })
   }
 
   renderItems = (arr) => {

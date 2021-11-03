@@ -42,6 +42,37 @@ export default class ItemDetails extends Component {
   }
   
   render() {
+    const ItemDetailsContent = ({item}) => {
+      const {id, name, gender, birthYear, eyeColor} = item;
+      const {image} = this.state
+    
+      return (
+        <React.Fragment>
+          <img className="Item-image" alt=""
+          src={image} />
+    
+          <div className="card-body">
+            <h4>{name}</h4>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
+                <span className="term">Gender</span>
+                <span>{gender}</span>
+              </li>
+              <li className="list-group-item">
+                <span className="term">Birth Year</span>
+                <span>{birthYear}</span>
+              </li>
+              <li className="list-group-item">
+                <span className="term">Eye Color</span>
+                <span>{eyeColor}</span>
+              </li>
+            </ul>
+            <ErrorButton />
+          </div>
+        </React.Fragment>
+      )
+    }
+
     const {item, hasLoading} = this.state
     const hasData = item && !hasLoading;
     
@@ -59,35 +90,7 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemDetailsContent = ({item}) => {
-  const {id, name, gender, birthYear, eyeColor} = item;
 
-  return (
-    <React.Fragment>
-      <img className="Item-image" alt=""
-      src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
-
-      <div className="card-body">
-        <h4>{name}</h4>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <span className="term">Gender</span>
-            <span>{gender}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Birth Year</span>
-            <span>{birthYear}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Eye Color</span>
-            <span>{eyeColor}</span>
-          </li>
-        </ul>
-        <ErrorButton />
-      </div>
-    </React.Fragment>
-  )
-}
 
 const EmptyContent = () => {
   return <span>Select a Item from a list</span>;
