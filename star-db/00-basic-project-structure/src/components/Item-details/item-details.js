@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Component } from 'react';
 
 import './item-details.css';
@@ -5,11 +6,11 @@ import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner/spinner';
 import ErrorButton from '../error-button/error-button';
 
-const Record = ({label, field}) => {
+const Record = ({item, label, field}) => {
   return (
     <li className="list-group-item">
-      <span className="term">{field}</span>
-      <span>{label}</span>
+      <span className="term">{label}</span>
+      <span>{item[field]}</span>
     </li>    
   )  
 }
@@ -56,7 +57,7 @@ export default class ItemDetails extends Component {
   
   render() {
     const ItemDetailsContent = ({item}) => {
-      const {id, name, gender, birthYear, eyeColor} = item;
+      const {name} = item;
       const {image} = this.state
     
       return (
@@ -68,8 +69,8 @@ export default class ItemDetails extends Component {
             <h4>{name}</h4>
             <ul className="list-group list-group-flush">
               {
-                React.Children.map(this.props.children, (child, idx) => {
-                  return <li>{idx}</li> 
+                React.Children.map(this.props.children, (child) => {
+                  return React.cloneElement(child, {item});
                 })
               }
             </ul>

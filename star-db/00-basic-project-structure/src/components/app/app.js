@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Component } from 'react';
 
 import './app.css';
@@ -52,9 +53,9 @@ export default class App extends Component {
         itemId="11"
         getData={getPerson}
         getImageUrl={getPersonImage}>              
-        <Record field={"Gender"} label={"gender"} />
-        <Record field={"Birth Year"} label={"birthYear"} />
-        <Record field={"Eye Color"} label={"eyeColor"} />
+        <Record field={"gender"} label={"Gender:"} />
+        <Record field={"birthYear"} label={"Birth Year:"} />
+        <Record field={"eyeColor"} label={"Eye Color:"} />
       </ItemDetails>
     )
 
@@ -62,7 +63,11 @@ export default class App extends Component {
       <ItemDetails 
         itemId="5"
         getData={getStarship}
-        getImageUrl={getStarshipImage} />
+        getImageUrl={getStarshipImage}>
+          <Record field={"model"} label={"Model:"} />
+          <Record field={"length"} label={"Length:"} />
+          <Record field={"costInCredits"} label={"Cost:"} />          
+      </ItemDetails>
     )
     
     return (
