@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { Component } from 'react';
 
 import './item-details.css';
@@ -70,6 +69,7 @@ export default class ItemDetails extends Component {
             <ul className="list-group list-group-flush">
               {
                 React.Children.map(this.props.children, (child) => {
+                  // @ts-ignore
                   return React.cloneElement(child, {item});
                 })
               }
