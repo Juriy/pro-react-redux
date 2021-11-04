@@ -86,20 +86,11 @@ export default class App extends Component {
         <StarshipDetaild itemId={5}/>
         <PlanetDetaild itemId={9}/>
         
-        <PersonList 
-          onItemSelected={this.onPersonSelected} >
-          { ({name}) => <span>{name}</span> }
-        </PersonList>    
+        <PersonList />
 
-        <PlanetList 
-          onItemSelected={this.onPersonSelected} >
-          { ({name}) => <span>{name}</span> }
-        </PlanetList>    
+        <PlanetList />
         
-        <StarshipList 
-          onItemSelected={this.onPersonSelected} >
-          { ({name}) => <span>{name}</span> }
-        </StarshipList>    
+        <StarshipList />
 
       </ErrorBoundry>
     )
