@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 
 import './app.css';
+
 import Header from '../header';
 import ErrorIndicator from '../error-indicator/error-indicator';
 import SwapiService from '../../services/swapi-service';
-import Row from '../row';
+import DummySwapiService from '../../services/dummy-swapi-service';
+
 import ErrorBoundry from '../error-boundry';
 import ItemDetails, { Record } from '../Item-details/item-details';
-import ItemList from '../item-list';
+import { SwapiServiceProvider } from '../swapi-servise-context';
+
 import {
   PersonDetaild,
   PlanetDetaild,
@@ -17,9 +20,10 @@ import {
   StarshipList
 } from "../sw-components"
 
+
 export default class App extends Component {
   
-  swapiService = new SwapiService()
+  swapiService = new DummySwapiService()
 
   state = {
     showRandomPlanet: true,
@@ -80,17 +84,19 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <Header />
+        <SwapiServiceProvider value={this.swapiService}> 
+          <Header />
 
-        <PersonDetaild itemId={11}/>
-        <StarshipDetaild itemId={5}/>
-        <PlanetDetaild itemId={9}/>
-        
-        <PersonList />
+          <PersonDetaild itemId={11}/>
+          <StarshipDetaild itemId={5}/>
+          <PlanetDetaild itemId={9}/>
+          
+          <PersonList />
 
-        <PlanetList />
-        
-        <StarshipList />
+          <PlanetList />
+          
+          <StarshipList />
+        </SwapiServiceProvider>
 
       </ErrorBoundry>
     )
