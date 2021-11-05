@@ -13,7 +13,6 @@ const ItemList = (props) => {
           key={name} 
           className="list-group-item"
           onClick={() => {
-            console.log(id)
             onItemSelected(id)
           }}>
           {label}
