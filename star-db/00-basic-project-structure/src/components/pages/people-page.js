@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { PersonDetails, PersonList } from '../sw-components';
+import {
+  PersonDetails,
+  PersonList,
+} from '../sw-components';
 import Row from '../row';
 
 export default class PeoplePage extends Component {
-
   state = {
-    selectedItem: null
+    selectedItem: null,
   };
 
   onItemSelected = (selectedItem) => {
@@ -17,8 +19,13 @@ export default class PeoplePage extends Component {
 
     return (
       <Row
-        left={<PersonList onItemSelected={this.onItemSelected} />}
-        right={<PersonDetails itemId={selectedItem} />} />
+        left={
+          <PersonList
+            onItemSelected={this.onItemSelected}
+          />
+        }
+        right={<PersonDetails itemId={selectedItem} />}
+      />
     );
   }
 }
