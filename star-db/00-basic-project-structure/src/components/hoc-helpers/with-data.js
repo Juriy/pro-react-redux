@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner/spinner';
 
-const withData = (View, getData) => {
+const withData = (View) => {
   return class extends Component {
     swapiService = new SwapiService()
 
@@ -12,7 +12,7 @@ const withData = (View, getData) => {
     }
   
     componentDidMount() {
-      getData()
+      this.props.getData()
         .then((data) => {
           this.setState({
             data
