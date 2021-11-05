@@ -6,11 +6,11 @@ const ItemList = (props) => {
   const {data, onItemSelected, children: renderLabel} = props
   const renderItems = (arr) => {
     return arr.map((item) => {
-      const {id} = item;
+      const {id, name} = item;
       const label = renderLabel(item)
       return (
         <li 
-          key={id} 
+          key={name} 
           className="list-group-item"
           onClick={() => onItemSelected(id)}>
           {label}
