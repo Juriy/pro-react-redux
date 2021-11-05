@@ -3,7 +3,7 @@ import React from "react";
 import ItemDetails, {Record} from "../Item-details/item-details";
 import { withSwapiServise } from "../hoc-helpers";
 
-const PersonDetaild = (props) => {
+const PersonDetails = (props) => {
   return (
     <ItemDetails {...props}>
         
@@ -21,4 +21,4 @@ const mapMethodsToProps = (swapiService) => {
   }
 }
 
-export default withSwapiServise(PersonDetaild, mapMethodsToProps)
+export default withSwapiServise(PersonDetails, mapMethodsToProps)

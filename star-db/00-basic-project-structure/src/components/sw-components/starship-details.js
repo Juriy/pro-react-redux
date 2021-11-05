@@ -3,7 +3,7 @@ import React from "react";
 import ItemDetails, {Record} from "../Item-details/item-details";
 import withSwapiServise from "../hoc-helpers/with-swapi-servise";
 
-const StarshipDetaild = (props) => {
+const StarshipDetails = (props) => {
   return (
     <ItemDetails {...props}>
       <Record field={"model"} label={"Model:"} item={undefined} />
@@ -20,4 +20,4 @@ const mapMethodsToProps = (swapiService) => {
   }
 }
 
-export default withSwapiServise(StarshipDetaild, mapMethodsToProps) 
+export default withSwapiServise(StarshipDetails, mapMethodsToProps) 

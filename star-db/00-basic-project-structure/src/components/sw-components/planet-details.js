@@ -4,7 +4,7 @@ import ItemDetails, {Record} from "../Item-details/item-details";
 import { SwapiServiceConsumer } from "../swapi-servise-context";
 import withSwapiServise from "../hoc-helpers/with-swapi-servise";
 
-const PlanetDetaild = (props) => {
+const PlanetDetails = (props) => {
   return (
     <ItemDetails {...props}>
 
@@ -23,4 +23,4 @@ const mapMethodsToProps = (swapiService) => {
   }
 }
 
-export default withSwapiServise(PlanetDetaild, mapMethodsToProps)
+export default withSwapiServise(PlanetDetails, mapMethodsToProps)

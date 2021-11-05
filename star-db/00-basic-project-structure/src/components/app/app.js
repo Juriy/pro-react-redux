@@ -6,15 +6,18 @@ import Header from '../header';
 import ErrorIndicator from '../error-indicator/error-indicator';
 import SwapiService from '../../services/swapi-service';
 import DummySwapiService from '../../services/dummy-swapi-service';
-
 import ErrorBoundry from '../error-boundry';
 import ItemDetails, { Record } from '../Item-details/item-details';
 import { SwapiServiceProvider } from '../swapi-servise-context';
+import RandomPlanet from '../random-planet';
+import Row from '../row';
+
+import { PeoplePage } from '../pages';
 
 import {
-  PersonDetaild,
-  PlanetDetaild,
-  StarshipDetaild,
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails,
   PersonList,
   PlanetList,
   StarshipList
@@ -24,30 +27,18 @@ import {
 export default class App extends Component {
   
   state = {
-    showRandomPlanet: true,
     hasRenderError: false,
-    swapiService: new DummySwapiService()
+    swapiService: new SwapiService()
   }
 
   onServiseChange = () => {
     this.setState(({ swapiService }) => {
       const Service = swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
-
-      console.log('switched to', Service.name);
-
       return {
         swapiService: new Service(),
       };
     });
   }
-  
-  toggleRandomPlanet = () => {
-    this.setState((state) => {
-      return {
-        showRandomPlanet: !state.showRandomPlanet
-      }
-    });
-  };  
 
   onPersonSelected = (id) => {
     this.setState({
@@ -95,21 +86,25 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <SwapiServiceProvider value={this.state.swapiService}> 
+        <SwapiServiceProvider
+          value={this.state.swapiService}
+        >
           <Header onServiseChange={this.onServiseChange} />
+          <RandomPlanet />
 
-          <PersonDetaild itemId={11}/>
-          <StarshipDetaild itemId={5}/>
-          <PlanetDetaild itemId={9}/>
-          
-          <PersonList />
+          <PeoplePage />
 
-          <PlanetList />
-          
-          <StarshipList />
+          <Row
+            left={<PlanetList />}
+            right={<PlanetDetails itemId={11} />}
+          />
+
+          <Row
+            left={<StarshipList />}
+            right={<StarshipDetails itemId={11} />}
+          />
         </SwapiServiceProvider>
-
       </ErrorBoundry>
-    )
+    );
   };
 };
