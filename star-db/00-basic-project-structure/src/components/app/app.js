@@ -23,13 +23,24 @@ import {
 
 export default class App extends Component {
   
-  swapiService = new SwapiService()
-
   state = {
     showRandomPlanet: true,
     hasRenderError: false,
+    swapiService: new DummySwapiService()
   }
 
+  onServiseChange = () => {
+    this.setState(({ swapiService }) => {
+      const Service = swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
+
+      console.log('switched to', Service.name);
+
+      return {
+        swapiService: new Service(),
+      };
+    });
+  }
+  
   toggleRandomPlanet = () => {
     this.setState((state) => {
       return {
@@ -54,7 +65,7 @@ export default class App extends Component {
       getStarship,
       getPersonImage,
       getStarshipImage,
-    } = this.swapiService;
+    } = this.state.swapiService;
 
     if (this.state.hasRenderError) {
       return <ErrorIndicator />
@@ -84,8 +95,8 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <SwapiServiceProvider value={this.swapiService}> 
-          <Header />
+        <SwapiServiceProvider value={this.state.swapiService}> 
+          <Header onServiseChange={this.onServiseChange} />
 
           <PersonDetaild itemId={11}/>
           <StarshipDetaild itemId={5}/>
