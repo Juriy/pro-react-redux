@@ -22,4 +22,4 @@ const mapMethodsToProps = (swapiService) => {
   }
 }
 
-export default withSwapiServise(PlanetDetails, mapMethodsToProps)
+export default withSwapiServise(mapMethodsToProps)(PlanetDetails)

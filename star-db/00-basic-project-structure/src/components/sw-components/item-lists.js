@@ -2,7 +2,7 @@ import React from "react";
 import ItemList from "../item-list";
 import { withData, withSwapiServise } from "../hoc-helpers";
 
-const withChildFunction = (Wrapped, fn) => {
+const withChildFunction = (fn) => (Wrapped) => {
   return (props) => {
     return (
       <Wrapped {...props}>
@@ -34,19 +34,16 @@ const mapStarhipMethodsToProps = (swapiService) => {
 }
 
 const PersonList = withSwapiServise(
-  withData(withChildFunction(ItemList, renderName)),
   mapPersonMethodsToProps
-);
+)(withData(withChildFunction(renderName)(ItemList)));
 
 const PlanetList = withSwapiServise(
-  withData(withChildFunction(ItemList, renderName)),
   mapPlanetMethodsToProps
-);
+)(withData(withChildFunction(renderName)(ItemList)));
 
 const StarshipList = withSwapiServise(
-  withData(withChildFunction(ItemList, renderModelAndName)),
   mapStarhipMethodsToProps
-);
+)(withData(withChildFunction(renderModelAndName)(ItemList)));
 
 export {
   PersonList,
