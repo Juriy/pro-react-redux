@@ -16,6 +16,7 @@ import {
   PlanetsPage,
   StarshipsPage,
 } from '../pages';
+import { StarshipDetails } from '../sw-components';
 
 export default class App extends Component {
   
@@ -62,9 +63,11 @@ export default class App extends Component {
                   <Route path="/people" 
                     render={() => {return <h2>people</h2>}} 
                     exact  />                
-                  <Route path="/people" component={ PeoplePage } />
-                  <Route path="/planets" component={ PlanetsPage } />
-                  <Route path="/starships" component={ StarshipsPage } />
+                  <Route path="/people" component={PeoplePage} />
+                  <Route path="/planets" component={PlanetsPage} />
+                  <Route path="/starships" exact component={StarshipsPage} />
+                  <Route path="/starships/:id" 
+                    render={() => <StarshipDetails />}/>
         
             </div>
           </Routes>    
