@@ -51,17 +51,17 @@ export default class App extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
+          <BrowserRouter>
           <div className="srardb-app">
             <Header onServiseChange={this.onServiseChange} />
             <RandomPlanet />
-            <BrowserRouter>
               <Routes>                  
                 <Route path="/people" element={<PeoplePage />} />
                 <Route path="/planets" element={<PlanetsPage />} />
                 <Route path="/starships" element={<StarshipsPage />} />
-              </Routes>
-            </BrowserRouter>                    
+              </Routes>          
           </div>
+          </BrowserRouter>    
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
