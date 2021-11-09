@@ -9,7 +9,7 @@ import DummySwapiService from '../../services/dummy-swapi-service';
 import ErrorBoundry from '../error-boundry';
 import { SwapiServiceProvider } from '../swapi-servise-context';
 import RandomPlanet from '../random-planet';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Routes, Route } from 'react-router-dom';
 
 import {
   PeoplePage,
@@ -51,17 +51,23 @@ export default class App extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
-          <BrowserRouter>
-          <div className="srardb-app">
-            <Header onServiseChange={this.onServiseChange} />
-            <RandomPlanet />
-              <Routes>                  
-                <Route path="/people" element={<PeoplePage />} />
-                <Route path="/planets" element={<PlanetsPage />} />
-                <Route path="/starships" element={<StarshipsPage />} />
-              </Routes>          
-          </div>
-          </BrowserRouter>    
+          <Routes>
+            <div className="srardb-app">
+              <Header onServiseChange={this.onServiseChange} />
+              <RandomPlanet />
+
+                  <Route path="/" 
+                    render={() => {return <h2>Welcom to StarDb</h2>}} 
+                    exact  />                
+                  <Route path="/people" 
+                    render={() => {return <h2>people</h2>}} 
+                    exact  />                
+                  <Route path="/people" component={ PeoplePage } />
+                  <Route path="/planets" component={ PlanetsPage } />
+                  <Route path="/starships" component={ StarshipsPage } />
+        
+            </div>
+          </Routes>    
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
