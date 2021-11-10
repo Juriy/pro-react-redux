@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { PersonDetails, PersonList } from '../sw-components';
 import Row from '../row';
 

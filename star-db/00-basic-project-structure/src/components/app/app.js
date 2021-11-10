@@ -53,21 +53,9 @@ export default class App extends Component {
               <Header onServiseChange={this.onServiseChange} />
               <RandomPlanet />
 
-              <Route
-                path="/"
-                render={() => {
-                  return <h2>Welcom to StarDb</h2>;
-                }}
-                exact
-              />
-              <Route
-                path="/people"
-                render={() => {
-                  return <h2>people</h2>;
-                }}
-                exact
-              />
-              <Route path="/people:id?" component={PeoplePage} />
+              <Route path="/" render={() => <h2>Welcom to StarDb</h2>} exact />
+              <Route path="/people" render={() => <h2>people</h2>} exact />
+              <Route path="/people/:id?" component={PeoplePage} />
               <Route path="/planets" component={PlanetsPage} />
               <Route path="/starships" exact component={StarshipsPage} />
               <Route
